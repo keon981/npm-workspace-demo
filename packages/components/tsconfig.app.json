@@ -26,15 +26,23 @@
     "baseUrl": ".",
     "paths": {
       "components": [
-        "src/components/index.ts"
-      ]
+        "lib/index.ts"
+      ],
+      "@/*": [
+        "src/*"
+      ],
     },
     "typeRoots": [
       "node_modules/@types",
-      "src/components/index.d.ts"
-    ]
+      "lib/index.d.ts"
+    ],
   },
   "include": [
-    "src"
-  ]
+    "src",
+    "lib"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
 }

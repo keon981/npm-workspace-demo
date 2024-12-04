@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "lib"
+  ],
+  "exclude": [
+    "node_modules",
+    "src",
+    "*.{test,stories}.{js,ts,jsx,tsx}",
+    "**/__tests__/**"
+  ]
+}
