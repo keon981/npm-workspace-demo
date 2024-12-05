@@ -31,6 +31,7 @@ export default defineConfig(() => ({
       entry: resolve(__dirname, 'src/main.ts'),
       name: 'ModuleA',
       fileName: (format) => `index.${format === "es" ? "mjs" : "cjs"}`,
+      cssFileName: 'style',
     },
     rollupOptions: {
       input: {
