@@ -1,10 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    "lib"
+    "src"
   ],
   "exclude": [
-    "src",
     "vite.config.ts",
     "tsconfig.*.json",
     "*.{config,test,stories}.{js,ts,jsx,tsx}",

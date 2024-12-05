@@ -10,7 +10,7 @@ export default defineConfig(() => ({
     react(),
     tsConfigPaths(),
     dts({
-      include: ['lib'],
+      include: ['src'],
       rollupTypes: true,
       exclude: [
         '**/node_modules/**',
@@ -22,19 +22,19 @@ export default defineConfig(() => ({
   ],
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src"),
+      "@": resolve(__dirname, "./src"),
     },
   },
   build: {
     copyPublicDir: false,
     lib: {
-      entry: resolve(__dirname, 'lib/main.ts'),
+      entry: resolve(__dirname, 'src/main.ts'),
       name: 'ModuleA',
       fileName: (format) => `index.${format === "es" ? "mjs" : "cjs"}`,
     },
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'lib/main.ts'),
+        main: resolve(__dirname, 'src/main.ts'),
       },
       external: ["react", "react-dom", 'react/jsx-runtime'],
       output: {
