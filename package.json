@@ -6,7 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:app1": "npm run dev --workspace @npm-workspace-demo/app1",
-    "dev:app2": "npm run dev --workspace @npm-workspace-demo/app2"
+    "dev:app2": "npm run dev --workspace @npm-workspace-demo/app2",
+    "add:components": "npm install @npm-workspace-demo/components --workspace @npm-workspace-demo/app1 && npm install @npm-workspace-demo/components --workspace @npm-workspace-demo/app2",
+    "build": "npm run build:app1 && npm run build:app2",
+    "build:components": "npm run build --workspace @npm-workspace-demo/components",
+    "build:app1": "npm run build --workspace @npm-workspace-demo/app1",
+    "build:app2": "npm run build --workspace @npm-workspace-demo/app2"
   },
   "keywords": [],
   "author": "",

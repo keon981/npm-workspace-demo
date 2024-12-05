@@ -1,12 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    "src/module"
+    "lib"
   ],
   "exclude": [
-    "node_modules",
     "src",
-    "*.{test,stories}.{js,ts,jsx,tsx}",
+    "vite.config.ts",
+    "tsconfig.*.json",
+    "*.{config,test,stories}.{js,ts,jsx,tsx}",
     "**/__tests__/**"
   ]
 }
