@@ -11,7 +11,8 @@
     "build": "npm run build --workspaces",
     "build:style": "npm run build -w @npm-workspace-demo/components",
     "build:host": "npm run build -w @npm-workspace-demo/host",
-    "build:login": "npm run build --workspace @npm-workspace-demo/login"
+    "build:login": "npm run build --workspace @npm-workspace-demo/login",
+    "clean": "npx rimraf packages/*/node_modules apps/*/*/node_modules"
   },
   "keywords": [],
   "author": "",
