@@ -6,13 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:host": "npm run dev -w @npm-workspace-demo/host",
-    "dev:remote": "npm run dev -w @npm-workspace-demo/remote",
+    "dev:login": "npm run dev -w @npm-workspace-demo/login",
     "add:components": "npm install @npm-workspace-demo/components --workspaces && npm uninstall @npm-workspace-demo/components -w @npm-workspace-demo/components",
-    "rm:components": "npm uninstall @npm-workspace-demo/components --workspace",
-    "build": "npm run build -ws",
+    "build": "npm run build --workspaces",
     "build:components": "npm run build -w @npm-workspace-demo/components",
     "build:host": "npm run build -w @npm-workspace-demo/host",
-    "build:remote": "npm run build -w @npm-workspace-demo/remote"
+    "build:login": "npm run build --workspace @npm-workspace-demo/login"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +19,8 @@
   "description": "",
   "workspaces": [
     "packages/*",
-    "apps/*"
+    "apps/host",
+    "apps/remotes/*"
   ],
   "devDependencies": {
     "@types/node": "^22.10.1",
