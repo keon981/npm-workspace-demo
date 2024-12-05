@@ -4,7 +4,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:app1": "npm run dev --workspace @npm-workspace-demo/app1",
+    "dev:app2": "npm run dev --workspace @npm-workspace-demo/app2"
   },
   "keywords": [],
   "author": "",

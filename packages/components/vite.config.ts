@@ -10,8 +10,12 @@ export default defineConfig(() => ({
     react(),
     tsConfigPaths(),
     dts({
-      include: ['lib'],
+      include: ['src/module'],
       rollupTypes: true,
+      exclude: [
+        '**/__tests__/**',
+        '**/*.{test,stories}.{js,ts,jsx,tsx}'
+      ],
     }),
   ],
   resolve: {
@@ -22,16 +26,13 @@ export default defineConfig(() => ({
   build: {
     copyPublicDir: false,
     lib: {
-      entry: {
-        main: resolve(__dirname, 'lib/main.ts')
-      },
+      entry: resolve(__dirname, 'src/module/main.ts'),
       name: 'MyLib',
-      formats: ["es", "cjs"],
       fileName: (format) => `index.${format === "es" ? "mjs" : "cjs"}`,
     },
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'lib/main.ts'),
+        main: resolve(__dirname, 'src/module/main.ts'),
       },
       external: ["react", "react-dom", 'react/jsx-runtime'],
       output: {
