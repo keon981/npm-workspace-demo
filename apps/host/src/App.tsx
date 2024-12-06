@@ -1,41 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { Header } from "@npm-workspace-demo/components"
+import { lazy, Suspense, useEffect, type ComponentType } from 'react'
 
 import './App.css'
 
+type ImportFn<T> = () => Promise<{ default: ComponentType<T> }>
+
+const safeLazy = <T,>(importFunction: ImportFn<T>) => {
+  let retries = 0;
+  const tryImport = async () => {
+    try {
+      return await importFunction();
+    } catch (error) {
+      // 最多重試 3 次
+      if (retries < 3) {
+        retries++;
+        return tryImport();
+      }
+      throw error;
+    }
+  };
+
+  return lazy(async () => {
+    return await tryImport();
+  });
+};
+
+// @ts-expect-error: Dynamic import
+const LoginWeb = safeLazy(() => import('@remote-login').catch((err)=> {
+  console.warn('err', err);
+  return { default:() => <div>Error</div> }
+}));
+
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    const htmlRoot = window.document.documentElement;
+    htmlRoot.className = 'dark';
+  }, []);
 
   return (
     <>
-      <Header text="Hello World from app1" />
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+			<Suspense fallback={<Loading />}>
+				<LoginWeb />
+			</Suspense>
     </>
   )
 }
 
 export default App
+
+function Loading () {
+  return (
+    <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      loading...
+    </div>
+    )
+}

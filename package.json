@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run dev --workspaces",
     "dev:host": "npm run dev -w @npm-workspace-demo/host",
     "dev:login": "npm run dev -w @npm-workspace-demo/login",
     "add:components": "npm install @npm-workspace-demo/components --workspaces && npm uninstall @npm-workspace-demo/components -w @npm-workspace-demo/components",
@@ -12,7 +13,10 @@
     "build:style": "npm run build -w @npm-workspace-demo/components",
     "build:host": "npm run build -w @npm-workspace-demo/host",
     "build:login": "npm run build --workspace @npm-workspace-demo/login",
-    "clean": "npx rimraf packages/*/node_modules apps/*/*/node_modules"
+    "clean": "npx rimraf packages/*/node_modules apps/*/*/node_modules",
+    "preview": "npm run preview:host && npm run preview:login",
+    "preview:host": "npm run preview -w @npm-workspace-demo/host -- --port 3000",
+    "preview:login": "npm run preview -w @npm-workspace-demo/login -- --port 3001"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +29,7 @@
   ],
   "devDependencies": {
     "@types/node": "^22.10.1",
+    "vite": "^5.4.11",
     "vite-plugin-dts": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.3"
   }
