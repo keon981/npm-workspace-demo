@@ -1,5 +1,7 @@
 # npm-workspace-demo
 
+> [ Reference Docs](https://www.learnbydo.ing/diary/2024-09-23-module-federation-vite-v1#module-federation-with-vite)
+
 ## Description
 
 Microfrontends promote flexibility in technology choices, allowing teams to **adopt new frameworks** and libraries for specific parts of the application  **without impacting the entire system** .
