@@ -1,27 +1,31 @@
-# npm-workspaces-demo
+# npm-workspace-demo
 
-> [References](https://earthly.dev/blog/npm-workspaces-monorepo/)
+## Description
 
-## init
+Microfrontends promote flexibility in technology choices, allowing teams to **adopt new frameworks** and libraries for specific parts of the application  **without impacting the entire system** .
 
-### root
+## Tech stack
 
-- package.json
-  ```json
-  {
-    ...,
-    "workspaces": ["./packages/*", "./apps/*"] //  tells npm that everything under the packages and apps directories is an npm workspace. Note that the workspace’s name is inferred from the name field of the corresponding package.json file.
-  }
-  ```
+- `module-federation/vite`: This plugin makes Module Federation work together with Vite.
+- **Vite** : Vite has emerged as a **leading frontend build tool** known for its lightning-fast development experience and efficient production builds.
 
-### packages/components
+## Design
 
-- package.json
-  - Rename the `dependencies` key to `peerDependencies` and change the `name` field to include the scope:
-    ```json
-    {
-      "name": "@npm-workspace-demo/components",
-      "peerDependencies":{...},
-        ...
-    }
-    ```
+* **Host Application:** The main application that integrates and displays microfrontends.
+* **Remote Application:** Independent applications representing specific features or components, served as microfrontends.
+  * Each microfrontend can be  **deployed independently** , without affecting the rest of the application.
+  * This **reduces the risk of downtime** during deployments and allows for rapid iteration and feature releases.
+* **Exposes:** Modules or components that a remote application makes available to the host application.
+* **Shared Modules:** Common dependencies used by both host and remote applications, ensuring version consistency and reducing bundle sizes.
+
+## Features
+
+## Getting started
+
+> From this directory execute:
+
+```
+npm run preview:deps
+```
+
+Open your browser at [http://localhost:3000](http://localhost:3000/) to see the amazing result.( server host can't use)

@@ -5,12 +5,13 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import tsConfigPaths from 'vite-tsconfig-paths'
 
+// https://vite.dev/config/
 export default defineConfig(() => ({
   plugins: [
     react(),
     tsConfigPaths(),
     dts({
-      include: ['lib'],
+      include: ['src'],
       rollupTypes: true,
       exclude: [
         '**/node_modules/**',
@@ -22,19 +23,20 @@ export default defineConfig(() => ({
   ],
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src"),
+      "@": resolve(__dirname, "./src"),
     },
   },
   build: {
     copyPublicDir: false,
     lib: {
-      entry: resolve(__dirname, 'lib/main.ts'),
+      entry: resolve(__dirname, 'src/main.ts'),
       name: 'ModuleA',
       fileName: (format) => `index.${format === "es" ? "mjs" : "cjs"}`,
+      cssFileName: 'style',
     },
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'lib/main.ts'),
+        main: resolve(__dirname, 'src/main.ts'),
       },
       external: ["react", "react-dom", 'react/jsx-runtime'],
       output: {
