@@ -6,7 +6,11 @@ import { federation } from "@module-federation/vite";
 export default defineConfig(() => {
   return {
     server: {
+      host: '0.0.0.0',
       port: 5500,
+    },
+    preview: {
+      host: '0.0.0.0',
     },
     build: {
       target: 'chrome89',
