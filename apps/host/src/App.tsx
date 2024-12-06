@@ -27,7 +27,7 @@ const safeLazy = <T,>(importFunction: ImportFn<T>) => {
 // @ts-expect-error: Dynamic import
 const LoginWeb = safeLazy(() => import('@remote-login').catch((err)=> {
   console.warn('err', err);
-  return { default:() => <div>Error</div> }
+  return { default:() => <Web>Server Error</Web> }
 }));
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
 
   return (
     <>
-			<Suspense fallback={<Loading />}>
+			<Suspense fallback={<Web>Loading...</Web>}>
 				<LoginWeb />
 			</Suspense>
     </>
@@ -47,10 +47,10 @@ function App() {
 
 export default App
 
-function Loading () {
+function Web ({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      loading...
+    <div className='text-2xl' style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      {children}
     </div>
-    )
+  )
 }

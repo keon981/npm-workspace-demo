@@ -10,11 +10,13 @@
     "dev:login": "npm run dev -w @npm-workspace-demo/login",
     "add:components": "npm install @npm-workspace-demo/components --workspaces && npm uninstall @npm-workspace-demo/components -w @npm-workspace-demo/components",
     "build": "npm run build --workspaces",
+    "build:deps": "npm run build:host && npm run build:login",
     "build:style": "npm run build -w @npm-workspace-demo/components",
     "build:host": "npm run build -w @npm-workspace-demo/host",
     "build:login": "npm run build --workspace @npm-workspace-demo/login",
     "clean": "npx rimraf packages/*/node_modules apps/*/*/node_modules",
     "preview": "npm run preview:host && npm run preview:login",
+    "preview:deps": "npm run build:deps && npm run preview",
     "preview:host": "npm run preview -w @npm-workspace-demo/host -- --port 3000",
     "preview:login": "npm run preview -w @npm-workspace-demo/login -- --port 3001"
   },
